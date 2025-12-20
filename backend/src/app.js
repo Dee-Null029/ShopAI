@@ -12,6 +12,10 @@ app.use(express.json());
 app.use("/api/products", require("./routes/productRoutes"));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Server running on port ${PORT}`)
-);
+const server = app.listen(PORT, '0.0.0.0', () => {
+  const addr = server.address() || { address: '0.0.0.0', port: PORT };
+  console.log(`Server running on ${addr.address}:${addr.port}`);
+});
+server.on('error', (err) => {
+  console.error('Server error:', err);
+});

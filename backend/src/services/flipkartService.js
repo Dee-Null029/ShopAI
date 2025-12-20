@@ -26,10 +26,19 @@ module.exports = async (query) => {
       const href = $(el).attr("href");
       if (!href || !href.includes("/p/")) return;
 
+      // Try to find a nearby price element using the provided class(es)
+      let price = 0;
+      const priceEl = $(el).closest('div').find('.hZ3P6w.bnqy13, .hZ3P6w, .bnqy13').first();
+      if (priceEl && priceEl.length) {
+        const priceText = priceEl.text();
+        const parsed = parseInt((priceText || "").replace(/[^\d]/g, ""), 10);
+        if (!Number.isNaN(parsed)) price = parsed;
+      }
+
       results.push({
         name,
         platform: "Flipkart",
-        price: 67999,
+        price: price || 67999,
         rating: 4.2,
         reviewCount: 8500,
         productUrl: `https://www.flipkart.com${href}`

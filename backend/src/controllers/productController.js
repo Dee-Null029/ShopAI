@@ -11,19 +11,11 @@ exports.searchProduct = async (req, res) => {
   // fetch from platforms
   const amazonData = await amazonService(q);
   const flipkartData = await flipkartService(q);
-const cache = require("../utils/cache");
 
   const results = [...amazonData, ...flipkartData];
 
   // save to DB
-  for (const p of results) {
-  await Product.updateOne(
-    { name: p.name, platform: p.platform },
-    { $set: p },
-    { upsert: true }
-  );
-}
-
+  await Product.insertMany(results);
 
   res.json(results);
 };
