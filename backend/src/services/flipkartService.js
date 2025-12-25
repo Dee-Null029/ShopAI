@@ -20,7 +20,9 @@ module.exports = async (query) => {
     $("a").each((i, el) => {
       if (results.length >= 5) return;
 
-      const name = $(el).text().trim();
+      let name = $(el).text().trim();
+      // Remove Flipkart's "Add to Compare" text (covers variants like "AddtoCompare", different spacing, and case)
+      name = name.replace(/Add\s*to\s*Compare\s*/ig, "").trim();
       if (!name || name.length < 20) return;
 
       const href = $(el).attr("href");
