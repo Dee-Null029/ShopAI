@@ -18,7 +18,7 @@ module.exports = async (query) => {
     const results = [];
 
     $("div[data-component-type='s-search-result']").each((i, el) => {
-      if (results.length >= 2) return;
+      if (results.length >= 5) return;
 
       const asin = $(el).attr("data-asin");
       if (!asin) return;

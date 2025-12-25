@@ -92,18 +92,39 @@ body {
   display: flex;
   gap: 8px;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .badge {
   padding: 4px 8px;
   font-size: 12px;
   border-radius: 6px;
-  color: black;
+  color: #07101a;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(2,6,23,0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.badge.cheapest { background: #22c55e; }
-.badge.best-rated { background: #fbbf24; }
-.badge.best-value { background: #60a5fa; }
+/* Primary badges */
+.badge.cheapest { background: linear-gradient(90deg,#34d399,#10b981); color: #04240a; }
+.badge.best-rated { background: linear-gradient(90deg,#fde68a,#fbbf24); color: #111827; }
+.badge.best-value { background: linear-gradient(90deg,#93c5fd,#60a5fa); color: #04243b; }
+
+/* New badge styles */
+.badge.top-cheapest { background: linear-gradient(90deg,#6ee7b7,#34d399); color: #04240a; }
+.badge.platform-cheapest { background: linear-gradient(90deg,#ffd8b5,#fb923c); color: #472a07; }
+.badge.recommended { background: linear-gradient(90deg,#c4b5fd,#7c3aed); color: #ffffff; box-shadow: 0 6px 20px rgba(124,58,237,0.18); }
+
+/* Inline savings shown on the card */
+.inline-savings {
+  margin-top: 8px;
+  color: #86efac;
+  font-size: 13px;
+  font-weight: 700;
+}
+
 
 .card-content .platform {
   font-size: 12px;

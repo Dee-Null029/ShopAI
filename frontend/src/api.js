@@ -11,7 +11,8 @@ export const searchProducts = async (query) => {
   return res.data;
 };
 
-export const compareProducts = async (query) => {
-  const res = await API.get(`/compare?q=${encodeURIComponent(query)}`);
+export const compareProducts = async (query, topN) => {
+  const topParam = topN ? `&topN=${encodeURIComponent(topN)}` : "";
+  const res = await API.get(`/compare?q=${encodeURIComponent(query)}${topParam}`);
   return res.data;
 };

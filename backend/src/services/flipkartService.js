@@ -18,7 +18,7 @@ module.exports = async (query) => {
     const results = [];
 
     $("a").each((i, el) => {
-      if (results.length >= 2) return;
+      if (results.length >= 5) return;
 
       const name = $(el).text().trim();
       if (!name || name.length < 20) return;

@@ -21,7 +21,9 @@ exports.searchProduct = async (req, res) => {
 };
 
 exports.compareProduct = async (req, res) => {
-  const { q } = req.query;
+  const { q, topN } = req.query;
+
+  if (!q) return res.status(400).json({ message: "Query missing" });
 
   const products = await Product.find({
     name: new RegExp(q, "i")
@@ -31,7 +33,8 @@ exports.compareProduct = async (req, res) => {
     return res.status(404).json({ message: "No data found" });
   }
 
-  const comparison = compare(products);
+  const parsedTopN = topN ? parseInt(topN, 10) : undefined;
+  const comparison = compare(products, { topN: parsedTopN });
 
   res.json(comparison);
 };
